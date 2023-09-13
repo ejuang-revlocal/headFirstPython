@@ -9,8 +9,12 @@ def read_swim_data(filename):
         times = lines[0].strip().split(",")
     converts = []
     for t in times:
-        minutes, rest = t.split(":")
-        seconds, hundredths = rest.split(".")
+        if ":" in t:
+            minutes, rest = t.split(":")
+            seconds, hundredths = rest.split(".")
+        else :
+            minutes = 0
+            seconds, hundredths = t.split(".")
         converts.append((int(minutes) * 60 * 100) + (int(seconds) * 100) + int(hundredths))
     average = statistics.mean(converts)
     mins_secs, hundredths = str(round(average / 100, 2)).split(".")
@@ -20,3 +24,11 @@ def read_swim_data(filename):
     average = str(minutes) + ":" + str(seconds) + "." + hundredths
 
     return swimmer, age, distance, stroke, times, average
+
+"""docstring comments begin with three double quotes
+and can extend to many lines, 
+as many as you need
+"""
+
+#Single-line comments start with a has character
+#they do not extend to multiple lines
